@@ -1,0 +1,2 @@
+# Qlip
+Windows Clipboard Manager
