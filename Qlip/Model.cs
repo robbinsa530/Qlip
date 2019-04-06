@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Qlip
 {
@@ -10,17 +7,47 @@ namespace Qlip
     {
         private List<string> clipboardHistory;
         private int current = 0;
+        private ConfigHelper config;
+
+        public bool ResetOnPaste() { return config.config.reset_on_paste; }
+        public bool ResetOnExit() { return config.config.reset_on_exit; }
+        public int PasteTimeout() { return config.config.paste_timeout; }
+        public bool MovePastedToFront() { return config.config.move_pasted_to_front; }
+
 
         public Model()
         {
-            clipboardHistory = new List<string>(40);
+            config = new ConfigHelper();
+            clipboardHistory = new List<string>(config.config.save_count);
         }
 
         public void AddNewClip(string clip)
         {
-            clipboardHistory.Add(clip);
-            if (clipboardHistory.Count > 40)
-                clipboardHistory.RemoveAt(0);
+            if (clip.Length > 0)
+            {
+                clipboardHistory.Insert(0, clip);
+                if (clipboardHistory.Count > config.config.save_count)
+                {
+                    clipboardHistory.RemoveAt(clipboardHistory.Count - 1);         
+                }
+            }
+        }
+
+        public void RemoveCurrentClip()
+        {
+            RemoveClip(current);
+        }
+
+        public void RemoveClip(int index)
+        {
+            if (index >= 0 && index < clipboardHistory.Count)
+            {
+                clipboardHistory.RemoveAt(index);
+                if (current > 0 && current > clipboardHistory.Count - 1)
+                {
+                    current--;
+                }
+            }
         }
 
         public void ClearClips()
@@ -54,14 +81,19 @@ namespace Qlip
             current = 0;
         }
 
+        public void GoToEnd()
+        {
+            current = clipboardHistory.Count - 1;
+        }
+
         public string GetMostRecentClip()
         {
-            return clipboardHistory.Count > 0 ? clipboardHistory.ElementAt(clipboardHistory.Count - 1) : "";
+            return clipboardHistory.Count > 0 ? clipboardHistory.ElementAt(0) : "";
         }
 
         public int GetCurrentForDisplay()
         {
-            return current + 1;
+            return clipboardHistory.Count == 0 ? 0 : current + 1;
         }
 
         public int GetCountForDisplay()

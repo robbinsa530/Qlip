@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 using Qlip.Native;
-using System.Windows.Interop;
+using System.Windows.Threading;
 
 namespace Qlip
 {
@@ -55,9 +46,26 @@ namespace Qlip
         private bool _pasting;
 
         /// <summary>
+        /// Whether the program just pasted
+        /// </summary>
+        private bool _pasted = false;
+
+        /// <summary>
+        /// Whether the program just exited the clip view screen
+        /// </summary>
+        private bool _exited = false;
+
+        /// <summary>
         /// 
         /// </summary>
         private IntPtr _nextClipboardViewer;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private Timer _timer;
+
+        private Dispatcher _thisDisp;
 
         /// <summary>
         /// Current clip to show
@@ -105,6 +113,12 @@ namespace Qlip
         {
             CurrentClip = "";
             CurrentLabel = "1/1";
+            _thisDisp = this.Dispatcher;
+            _timer = new Timer(_ => 
+            {
+                _thisDisp.BeginInvoke((Action) (() => { Paste(); }));
+            });
+
             InitializeComponent();
             DataContext = this;
 
@@ -153,8 +167,13 @@ namespace Qlip
             {
                 if (Clipboard.ContainsText())
                 {
-                    if (!Clipboard.IsCurrent((new DataObject(_this._model.GetMostRecentClip()))))
-                        _this._model.AddNewClip(Clipboard.GetText(TextDataFormat.Text));
+                    string cur = _this._model.GetMostRecentClip();
+                    string clipContents = Clipboard.GetText(TextDataFormat.UnicodeText);
+                    if (!cur.Equals(clipContents))
+                    {
+                        _this._model.AddNewClip(Clipboard.GetText(TextDataFormat.UnicodeText));
+                        _this._model.Reset();
+                    }
                 }
             }
             catch (Exception e)
@@ -178,6 +197,8 @@ namespace Qlip
                 _this.Topmost = true;
                 _this.Show();
                 _this.Activate();
+
+                _this.ResetTimer();
             }
             else
             {
@@ -227,6 +248,37 @@ namespace Qlip
         }
 
         /// <summary>
+        /// Perform paste event
+        /// </summary>
+        private void Paste()
+        {
+            _pasting = true;
+            Clipboard.SetText(CurrentClip);
+            if (_model.MovePastedToFront())
+            {
+                _model.RemoveCurrentClip();
+                _model.AddNewClip(CurrentClip);
+            }
+            if (_model.ResetOnPaste()) { _model.Reset(); }
+            CurrentClip = null;
+            CurrentLabel = _model.GetCurrentForDisplay() + "/" + _model.GetCountForDisplay();
+            _pasted = true;
+            this.Hide();
+            System.Windows.Forms.SendKeys.SendWait("^{v}");
+            _pasting = false;
+        }
+
+        private void ResetTimer()
+        {
+            _timer.Change(_model.PasteTimeout() * 1000, Timeout.Infinite);
+        }
+
+        private void CancelTimer()
+        {
+            _timer.Change(Timeout.Infinite, Timeout.Infinite);
+        }
+
+        /// <summary>
         /// Capture key-downs when app is open
         /// </summary>
         /// <param name="sender"></param>
@@ -234,27 +286,24 @@ namespace Qlip
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
+            ResetTimer();
             switch (e.Key)
             {
                 case Key.Enter:
-                    _pasting = true;
-                    Clipboard.SetText(CurrentClip);
-                    _model.Reset();
-                    CurrentClip = null;
-                    CurrentLabel = _model.GetCurrentForDisplay() + "/" + _model.GetCountForDisplay();
-                    this.Hide();
-                    System.Windows.Forms.SendKeys.SendWait("^{v}");
-                    _pasting = false;
+                    CancelTimer();
+                    Paste();
                     e.Handled = true;
                     break;
                 case Key.V:
                 case Key.Tab:
+                case Key.Up:
                 case Key.Right:
                     _model.Next();
                     CurrentClip = _model.GetCurrentClip();
                     CurrentLabel = _model.GetCurrentForDisplay() + "/" + _model.GetCountForDisplay();
                     e.Handled = true;
                     break;
+                case Key.Down:
                 case Key.Left:
                     _model.Prev();
                     CurrentClip = _model.GetCurrentClip();
@@ -262,9 +311,31 @@ namespace Qlip
                     e.Handled = true;
                     break;
                 case Key.Escape:
-                    _model.Reset();
+                    CancelTimer();
+                    if (_model.ResetOnExit()) { _model.Reset(); }
                     CurrentLabel = _model.GetCurrentForDisplay() + "/" + _model.GetCountForDisplay();
+                    _exited = true;
                     this.Hide();
+                    e.Handled = true;
+                    break;
+                case Key.Home:
+                    _model.Reset();
+                    CurrentClip = _model.GetCurrentClip();
+                    CurrentLabel = _model.GetCurrentForDisplay() + "/" + _model.GetCountForDisplay();
+                    e.Handled = true;
+                    break;
+                case Key.End:
+                    _model.GoToEnd();
+                    CurrentClip = _model.GetCurrentClip();
+                    CurrentLabel = _model.GetCurrentForDisplay() + "/" + _model.GetCountForDisplay();
+                    e.Handled = true;
+                    break;
+                case Key.Delete:
+                case Key.Back:
+                case Key.X:
+                    _model.RemoveCurrentClip();
+                    CurrentClip = _model.GetCurrentClip();
+                    CurrentLabel = _model.GetCurrentForDisplay() + "/" + _model.GetCountForDisplay();
                     e.Handled = true;
                     break;
             }
@@ -299,8 +370,9 @@ namespace Qlip
         /// <param name="e"></param>
         private void Window_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            _model.Reset();
+            if (_model.ResetOnExit() && !_exited && !_pasted) { _model.Reset(); }
             CurrentLabel = _model.GetCurrentForDisplay() + "/" + _model.GetCountForDisplay();
+            _pasted = _exited = false;
             this.Hide();
         }
 
