@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MutexManager", "MutexManage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfFormLibrary", "WpfFormLibrary\WpfFormLibrary.csproj", "{F4B7E37D-CD21-493D-AD37-CA7263DB2F54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QlipPreferences", "QlipPreferences\QlipPreferences.csproj", "{A21541B2-9B39-4589-A47E-86ED5C80544D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,14 @@ Global
 		{F4B7E37D-CD21-493D-AD37-CA7263DB2F54}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F4B7E37D-CD21-493D-AD37-CA7263DB2F54}.Release|x86.ActiveCfg = Release|Any CPU
 		{F4B7E37D-CD21-493D-AD37-CA7263DB2F54}.Release|x86.Build.0 = Release|Any CPU
+		{A21541B2-9B39-4589-A47E-86ED5C80544D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A21541B2-9B39-4589-A47E-86ED5C80544D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A21541B2-9B39-4589-A47E-86ED5C80544D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A21541B2-9B39-4589-A47E-86ED5C80544D}.Debug|x86.Build.0 = Debug|Any CPU
+		{A21541B2-9B39-4589-A47E-86ED5C80544D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A21541B2-9B39-4589-A47E-86ED5C80544D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A21541B2-9B39-4589-A47E-86ED5C80544D}.Release|x86.ActiveCfg = Release|Any CPU
+		{A21541B2-9B39-4589-A47E-86ED5C80544D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

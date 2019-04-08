@@ -56,15 +56,18 @@ namespace Qlip
         private bool _exited = false;
 
         /// <summary>
-        /// 
+        /// Used for capturing system clip events
         /// </summary>
         private IntPtr _nextClipboardViewer;
 
         /// <summary>
-        /// 
+        /// Timer used for auto pasting when no action for some time
         /// </summary>
         private Timer _timer;
 
+        /// <summary>
+        /// Dispatcher to main thread (used for timer)
+        /// </summary>
         private Dispatcher _thisDisp;
 
         /// <summary>
@@ -268,14 +271,22 @@ namespace Qlip
             _pasting = false;
         }
 
+        /// <summary>
+        /// Reset timer used for auto pasting
+        /// </summary>
         private void ResetTimer()
         {
-            _timer.Change(_model.PasteTimeout() * 1000, Timeout.Infinite);
+            if (_model.PasteTimeout() > 0)
+                _timer.Change(_model.PasteTimeout() * 1000, Timeout.Infinite);
         }
 
+        /// <summary>
+        /// Cancel the timer used for auto pasting
+        /// </summary>
         private void CancelTimer()
         {
-            _timer.Change(Timeout.Infinite, Timeout.Infinite);
+            if (_model.PasteTimeout() > 0)
+                _timer.Change(Timeout.Infinite, Timeout.Infinite);
         }
 
         /// <summary>
@@ -312,7 +323,7 @@ namespace Qlip
                     break;
                 case Key.Escape:
                     CancelTimer();
-                    if (_model.ResetOnExit()) { _model.Reset(); }
+                    if (_model.ResetOnCancel()) { _model.Reset(); }
                     CurrentLabel = _model.GetCurrentForDisplay() + "/" + _model.GetCountForDisplay();
                     _exited = true;
                     this.Hide();
@@ -370,7 +381,7 @@ namespace Qlip
         /// <param name="e"></param>
         private void Window_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if (_model.ResetOnExit() && !_exited && !_pasted) { _model.Reset(); }
+            if (_model.ResetOnCancel() && !_exited && !_pasted) { _model.Reset(); }
             CurrentLabel = _model.GetCurrentForDisplay() + "/" + _model.GetCountForDisplay();
             _pasted = _exited = false;
             this.Hide();

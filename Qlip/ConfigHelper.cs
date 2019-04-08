@@ -13,13 +13,13 @@ namespace Qlip
 @"{
     ""save_count"":""40"",
     ""reset_on_paste"":true,
-    ""reset_on_exit"":false,
+    ""reset_on_cancel"":false,
     ""paste_timeout"":""2"",
     ""move_pasted_to_front"":false
 }";
         private static readonly int defaultSaveCount = 40;
         private static readonly bool defaultResetOnPaste = true;
-        private static readonly bool defaultResetOnExit = false;
+        private static readonly bool defaultResetOnCancel = false;
         private static readonly int defaultPasteTimeout = 2;
         private static readonly bool defaultMovePastedToFront = false;
 
@@ -53,7 +53,7 @@ namespace Qlip
                 config = new Config();
                 config.save_count = defaultSaveCount;
                 config.reset_on_paste = defaultResetOnPaste;
-                config.reset_on_exit = defaultResetOnExit;
+                config.reset_on_cancel = defaultResetOnCancel;
                 config.paste_timeout = defaultPasteTimeout;
                 config.move_pasted_to_front = defaultMovePastedToFront;
             }
@@ -64,7 +64,7 @@ namespace Qlip
         {
             public int save_count;
             public bool reset_on_paste;
-            public bool reset_on_exit;
+            public bool reset_on_cancel;
             public int paste_timeout;
             public bool move_pasted_to_front;
         }

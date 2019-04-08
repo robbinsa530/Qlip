@@ -10,7 +10,7 @@ namespace Qlip
         private ConfigHelper config;
 
         public bool ResetOnPaste() { return config.config.reset_on_paste; }
-        public bool ResetOnExit() { return config.config.reset_on_exit; }
+        public bool ResetOnCancel() { return config.config.reset_on_cancel; }
         public int PasteTimeout() { return config.config.paste_timeout; }
         public bool MovePastedToFront() { return config.config.move_pasted_to_front; }
 
