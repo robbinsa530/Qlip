@@ -18,7 +18,7 @@
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         AllowsTransparency="True"
         ShowInTaskbar="False"
-        Title="MainWindow" Height="350" Width="450">
+        Title="Qlip" Height="350" Width="450">
     <Window.Background>
         <SolidColorBrush Opacity="0.75" Color="#444444"/>
     </Window.Background>

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using MutexManager;
 
-namespace Qlip
+namespace QlipControl
 {
     /// <summary>
     /// Framework for restricting app to a single instance and for running as a tray app.

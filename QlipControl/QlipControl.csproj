@@ -76,8 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomApplicationContext.cs" />
-    <Compile Include="HostFileManager.cs" />
-    <Compile Include="HostManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -115,13 +113,13 @@
       <Project>{CE119D2D-F9B6-4FCF-B527-40CAEAEF029C}</Project>
       <Name>MutexManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\QlipPreferences\QlipPreferences.csproj">
+      <Project>{a21541b2-9b39-4589-a47e-86ed5c80544d}</Project>
+      <Name>QlipPreferences</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Qlip\Qlip.csproj">
       <Project>{a25015b4-bfe5-4657-8a8f-e13efe9e9db1}</Project>
       <Name>Qlip</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WpfFormLibrary\WpfFormLibrary.csproj">
-      <Project>{F4B7E37D-CD21-493D-AD37-CA7263DB2F54}</Project>
-      <Name>WpfFormLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +141,9 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

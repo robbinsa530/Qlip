@@ -4,7 +4,9 @@ using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 using System.Reflection;
 
-namespace Qlip
+using QlipPreferences;
+
+namespace QlipControl
 {
 
     /// <summary>
@@ -36,6 +38,11 @@ namespace Qlip
         /// The actual qlip main window form
         /// </summary>
         private System.Windows.Window qlipForm;
+
+        /// <summary>
+        /// The qlip preferences form
+        /// </summary>
+        private System.Windows.Window qlipConfigForm;
 
         /// <summary>
         /// A list of components to dispose when the context is disposed
@@ -100,7 +107,7 @@ namespace Qlip
         /// <param name="e"></param>
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
         {
-            // ShowConfigForm(); 
+            ShowConfigForm(); 
         }
 
         /// <summary>
@@ -125,7 +132,6 @@ namespace Qlip
         {
             if (qlipForm == null)
             {
-                //qlipForm = new WpfFormLibrary.IntroForm();
                 qlipForm = new Qlip.MainWindow();
 
                 qlipForm.Closed += qlipProcess_Closed; // avoid reshowing a disposed form
@@ -146,13 +152,26 @@ namespace Qlip
         }
 
         /// <summary>
+        /// Start Qlip
+        /// </summary>
+        private void ShowConfigForm()
+        {
+            if (qlipConfigForm == null)
+            {
+                qlipConfigForm = new QlipPreferences.QlipPreferencesWindow();
+                qlipConfigForm.Closed += qlipConfig_Closed; // avoid reshowing a disposed form
+                ElementHost.EnableModelessKeyboardInterop(qlipConfigForm);
+                qlipConfigForm.Show();
+             }
+        }
+
+        /// <summary>
         /// Start or stop Qlip
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void startStopQlip_Click(object sender, EventArgs e)
         {
-            // notifyIcon.ShowBalloonTip(5000, "Hosts Switched!", string.Format("text text"), ToolTipIcon.Info);
             ShowQlipForm();
         }
 
@@ -163,7 +182,7 @@ namespace Qlip
         /// <param name="e"></param>
         private void openQlipConfig_Click(object sender, EventArgs e)
         {
-            // ShowConfigForm();
+            ShowConfigForm();
         }
 
         // null out the forms so we know to create a new one.
@@ -172,18 +191,21 @@ namespace Qlip
             qlipForm = null;
             StartStopText = "Start";
         }
-        // private void qlipConfig_Closed(object sender, EventArgs e) { qlipConfigForm = null; }
+        private void qlipConfig_Closed(object sender, EventArgs e)
+        {
+            qlipConfigForm = null;
+        }
 
         private void InitializeContext()
         {
             components = new System.ComponentModel.Container();
             notifyIcon = new NotifyIcon(components)
-                             {
-                                 ContextMenuStrip = new ContextMenuStrip(),
-                                 Icon = new Icon(IconFileName),
-                                 Text = DefaultTooltip,
-                                 Visible = true
-                             };
+                {
+                    ContextMenuStrip = new ContextMenuStrip(),
+                    Icon = new Icon(IconFileName),
+                    Text = DefaultTooltip,
+                    Visible = true
+                };
             notifyIcon.ContextMenuStrip.Opening += ContextMenuStrip_Opening;
             notifyIcon.DoubleClick += notifyIcon_DoubleClick;
             notifyIcon.MouseUp += notifyIcon_MouseUp;
@@ -195,7 +217,7 @@ namespace Qlip
 		/// <param name="disposing"></param>
 		protected override void Dispose( bool disposing )
 		{
-			if( disposing && components != null) { components.Dispose(); }
+			if (disposing && components != null) { components.Dispose(); }
 		}
 
 		/// <summary>
@@ -215,6 +237,7 @@ namespace Qlip
         {
             // before we exit, let forms clean themselves up.
             if (qlipForm != null) { qlipForm.Close(); }
+            if (qlipConfigForm != null) { qlipConfigForm.Close(); }
 
             notifyIcon.Visible = false; // should remove lingering tray icon
             base.ExitThreadCore();

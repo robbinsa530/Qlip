@@ -11,7 +11,10 @@ namespace Qlip
 
         public bool ResetOnPaste() { return config.config.reset_on_paste; }
         public bool ResetOnCancel() { return config.config.reset_on_cancel; }
-        public int PasteTimeout() { return config.config.paste_timeout; }
+        public int PasteTimeoutMS()
+        {
+            return (int)System.Math.Floor(config.config.paste_timeout * 1000);
+        }
         public bool MovePastedToFront() { return config.config.move_pasted_to_front; }
 
 

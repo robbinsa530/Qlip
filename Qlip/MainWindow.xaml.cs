@@ -276,8 +276,8 @@ namespace Qlip
         /// </summary>
         private void ResetTimer()
         {
-            if (_model.PasteTimeout() > 0)
-                _timer.Change(_model.PasteTimeout() * 1000, Timeout.Infinite);
+            if (_model.PasteTimeoutMS() > 0)
+                _timer.Change(_model.PasteTimeoutMS(), Timeout.Infinite);
         }
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace Qlip
         /// </summary>
         private void CancelTimer()
         {
-            if (_model.PasteTimeout() > 0)
+            if (_model.PasteTimeoutMS() > 0)
                 _timer.Change(Timeout.Infinite, Timeout.Infinite);
         }
 
