@@ -68,7 +68,36 @@ namespace Qlip
         {
             string jsonStr = JsonConvert.SerializeObject(this.config);
             File.WriteAllText(".qlipconfig.json", jsonStr);
+
+            // Alert!
+            QlipConfigChangedArgs args = new QlipConfigChangedArgs();
+            args.NewSaveCount = this.config.save_count;
+            OnQlipConfigChanged(args);
         }
+
+        /// <summary>
+        /// Raise a Qlip Config Changed event so Qlip can see that it needs to reload its config
+        /// 
+        /// TO CALL:
+        ///     QlipConfigChangedArgs args = new QlipConfigChangedArgs();
+        ///     OnQlipConfigChanged(args);
+        ///     
+        /// TO HANDLE (in Instantiating class):
+        ///     ConfigHelper ch = new ConfigHelper;
+        ///     ch.QlipConfigChanged += SomeMethodToHandleChange/*(object sender, QlipConfigChangedArgs e)*/;
+        ///     //Make the above method^^^
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnQlipConfigChanged(QlipConfigChangedArgs e)
+        {
+            EventHandler<QlipConfigChangedArgs> handler = QlipConfigChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+        public event EventHandler<QlipConfigChangedArgs> QlipConfigChanged;
 
         public class Config
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Qlip
@@ -18,9 +19,10 @@ namespace Qlip
         public bool MovePastedToFront() { return config.config.move_pasted_to_front; }
 
 
-        public Model()
+        public Model(ConfigHelper cnfg)
         {
-            config = new ConfigHelper();
+            config = cnfg;
+            config.QlipConfigChanged += QlipConfigChangedHandler;
             clipboardHistory = new List<string>(config.config.save_count);
         }
 
@@ -49,6 +51,19 @@ namespace Qlip
                 if (current > 0 && current > clipboardHistory.Count - 1)
                 {
                     current--;
+                }
+            }
+        }
+
+        public void TrimClipsFromEnd(int numToTrim)
+        {
+            int start = clipboardHistory.Count - numToTrim;
+            if (start > 0)
+            {
+                clipboardHistory.RemoveRange(start, numToTrim);
+                if (current > clipboardHistory.Count - 1)
+                {
+                    current = clipboardHistory.Count - 1;
                 }
             }
         }
@@ -102,6 +117,14 @@ namespace Qlip
         public int GetCountForDisplay()
         {
             return clipboardHistory.Count;
+        }
+
+        public void QlipConfigChangedHandler(object sender, QlipConfigChangedArgs e)
+        {
+            if (clipboardHistory.Count > e.NewSaveCount)
+            {
+                TrimClipsFromEnd(clipboardHistory.Count - e.NewSaveCount);
+            }
         }
     }
 }

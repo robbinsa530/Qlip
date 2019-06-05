@@ -63,7 +63,7 @@
                             Margin="20,0" Content="Move pasted clip to front of history." IsChecked="{Binding MovePastedToFront}"/>
 
                         <Button Grid.Row="5" Width="125" Margin="35,5" HorizontalAlignment="Right" Content="Restore Defaults" Click="RestoreDefaultsButton_Click"/>
-                        <Button Grid.Row="6" Width="125" Margin="35,5" HorizontalAlignment="Right" Content="Save &amp; Restart Qlip" 
+                        <Button Grid.Row="6" Width="125" Margin="35,5" HorizontalAlignment="Right" Content="Save Changes" 
                             IsEnabled="{Binding UpdateSourceTrigger=PropertyChanged, Path=FieldsAreValid}" Click="SaveButton_Click"/>
                     </Grid>
                 </Grid>

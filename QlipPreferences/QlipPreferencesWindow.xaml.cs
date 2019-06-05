@@ -124,9 +124,9 @@ namespace QlipPreferences
             }
         }
 
-        public QlipPreferencesWindow()
+        public QlipPreferencesWindow(ConfigHelper cnfg)
         {
-            config = new ConfigHelper();
+            config = cnfg;
             SaveCount = config.config.save_count.ToString();
             double pto = config.config.paste_timeout;
             PasteTimeout = pto > 0 ? pto.ToString() : ConfigHelper.defaultPasteTimeout.ToString();

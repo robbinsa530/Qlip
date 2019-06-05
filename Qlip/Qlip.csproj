@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="Native\ClipboardListener.cs" />
+    <Compile Include="QlipConfigChangedArgs.cs" />
     <Compile Include="SpongeWindow.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="MainWindow.xaml.cs">

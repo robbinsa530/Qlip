@@ -112,7 +112,7 @@ namespace Qlip
         /// <summary>
         /// Initializer
         /// </summary>
-        public MainWindow()
+        public MainWindow(ConfigHelper cnfg)
         {
             CurrentClip = "";
             CurrentLabel = "1/1";
@@ -127,7 +127,7 @@ namespace Qlip
 
             _pasting = false;
             _this = this;
-            _model = new Model();
+            _model = new Model(cnfg);
 
             _sponge = new SpongeWindow();
             _sponge.WndProcCalled += (s, e) => ProcessMessage(e);

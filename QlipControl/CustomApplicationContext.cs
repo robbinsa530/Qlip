@@ -5,6 +5,7 @@ using System.Windows.Forms.Integration;
 using System.Reflection;
 
 using QlipPreferences;
+using Qlip;
 
 namespace QlipControl
 {
@@ -21,7 +22,7 @@ namespace QlipControl
         /// <summary>
         /// Icon
         /// </summary>
-        private static readonly string IconFileName = "route.ico";
+        private static readonly string IconFileName = "qlip.ico";
 
         /// <summary>
         /// Tooltip for notifyicon
@@ -55,12 +56,18 @@ namespace QlipControl
         private NotifyIcon notifyIcon;
 
         /// <summary>
+        /// Single instance of config helper to be passed around
+        /// </summary>
+        private ConfigHelper config;
+
+        /// <summary>
 		/// This class should be created and passed into Application.Run( ... )
 		/// </summary>
 		public CustomApplicationContext() 
 		{
             StartStopText = "Start";
             InitializeContext();
+            config = new ConfigHelper();
             ShowQlipForm();
 		}
 
@@ -132,7 +139,7 @@ namespace QlipControl
         {
             if (qlipForm == null)
             {
-                qlipForm = new Qlip.MainWindow();
+                qlipForm = new Qlip.MainWindow(config);
 
                 qlipForm.Closed += qlipProcess_Closed; // avoid reshowing a disposed form
                 ElementHost.EnableModelessKeyboardInterop(qlipForm);
@@ -158,7 +165,7 @@ namespace QlipControl
         {
             if (qlipConfigForm == null)
             {
-                qlipConfigForm = new QlipPreferences.QlipPreferencesWindow();
+                qlipConfigForm = new QlipPreferences.QlipPreferencesWindow(config);
                 qlipConfigForm.Closed += qlipConfig_Closed; // avoid reshowing a disposed form
                 ElementHost.EnableModelessKeyboardInterop(qlipConfigForm);
                 qlipConfigForm.Show();
