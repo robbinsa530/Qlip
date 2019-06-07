@@ -56,9 +56,9 @@ namespace QlipControl
         private NotifyIcon notifyIcon;
 
         /// <summary>
-        /// Single instance of config helper to be passed around
+        /// Data model
         /// </summary>
-        private ConfigHelper config;
+        private Model model;
 
         /// <summary>
 		/// This class should be created and passed into Application.Run( ... )
@@ -66,8 +66,8 @@ namespace QlipControl
 		public CustomApplicationContext() 
 		{
             StartStopText = "Start";
+            model = new Model();
             InitializeContext();
-            config = new ConfigHelper();
             ShowQlipForm();
 		}
 
@@ -139,7 +139,11 @@ namespace QlipControl
         {
             if (qlipForm == null)
             {
-                qlipForm = new Qlip.MainWindow(config);
+                if (model != null)
+                {
+                    model.Reset();
+                }
+                qlipForm = new Qlip.MainWindow(model);
 
                 qlipForm.Closed += qlipProcess_Closed; // avoid reshowing a disposed form
                 ElementHost.EnableModelessKeyboardInterop(qlipForm);
@@ -165,7 +169,7 @@ namespace QlipControl
         {
             if (qlipConfigForm == null)
             {
-                qlipConfigForm = new QlipPreferences.QlipPreferencesWindow(config);
+                qlipConfigForm = new QlipPreferences.QlipPreferencesWindow();
                 qlipConfigForm.Closed += qlipConfig_Closed; // avoid reshowing a disposed form
                 ElementHost.EnableModelessKeyboardInterop(qlipConfigForm);
                 qlipConfigForm.Show();
@@ -235,7 +239,7 @@ namespace QlipControl
         private void exitItem_Click(object sender, EventArgs e) 
 		{
 			ExitThread();
-		}
+        }
 
         /// <summary>
         /// If we are presently showing a form, clean it up.

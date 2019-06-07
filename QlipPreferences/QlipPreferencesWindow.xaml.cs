@@ -2,6 +2,7 @@
 using System.Windows;
 
 using Qlip;
+using System;
 
 namespace QlipPreferences
 {
@@ -12,6 +13,7 @@ namespace QlipPreferences
     {
         private const double MAX_PASTE_TIMEOUT = 600;
         private const double MAX_SAVE_COUNT = 256;
+        public const double DEFAULT_PASTE_TIMEOUT = 2.0;
 
         public string SaveCount
         {
@@ -23,13 +25,14 @@ namespace QlipPreferences
                 if (int.TryParse(value, out temp))
                 {
                     if (temp > 0 && temp < MAX_SAVE_COUNT)
-                        config.config.save_count = temp;
+                        _saveCount = temp;
                 }
                 OnPropertyChanged("SaveCount");
                 return;
             }
         }
         private string _saveCountStr;
+        private int _saveCount;
 
         public string PasteTimeout
         {
@@ -43,7 +46,7 @@ namespace QlipPreferences
                     if (split.Length > 1 && split[1].Length > 3)
                         return;
                     if (temp > 0 && temp < MAX_PASTE_TIMEOUT)
-                        config.config.paste_timeout = temp;
+                        _pasteTimeout = temp;
                 }
                 _pasteTimeoutStr = value; // Always set string
 
@@ -52,39 +55,43 @@ namespace QlipPreferences
             }
         }
         private string _pasteTimeoutStr;
+        private double _pasteTimeout;
 
         public bool ResetOnPaste
         {
-            get { return config.config.reset_on_paste; }
+            get { return _resetOnPaste; }
             set
             {
-                config.config.reset_on_paste = value;
+                _resetOnPaste = value;
                 OnPropertyChanged("ResetOnPaste");
                 return;
             }
         }
+        private bool _resetOnPaste;
 
         public bool ResetOnCancel
         {
-            get { return config.config.reset_on_cancel; }
+            get { return _resetOnCancel; }
             set
             {
-                config.config.reset_on_cancel = value;
+                _resetOnCancel = value;
                 OnPropertyChanged("ResetOnCancel");
                 return;
             }
         }
+        private bool _resetOnCancel;
 
         public bool MovePastedToFront
         {
-            get { return config.config.move_pasted_to_front; }
+            get { return _movePastedToFront; }
             set
             {
-                config.config.move_pasted_to_front = value;
+                _movePastedToFront = value;
                 OnPropertyChanged("MovePastedToFront");
                 return;
             }
         }
+        private bool _movePastedToFront;
 
         public bool AutoPaste
         {
@@ -92,7 +99,7 @@ namespace QlipPreferences
             set
             {
                 _autoPaste = value;
-                if (!value) { config.config.paste_timeout = -1; }
+                if (!value) { _pasteTimeout = -1; }
                 OnPropertyChanged("AutoPaste");
                 return;
             }
@@ -113,8 +120,6 @@ namespace QlipPreferences
         private bool _saveCountValid;
         private bool _pasteTimeoutValid;
 
-        private ConfigHelper config;
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
@@ -124,16 +129,15 @@ namespace QlipPreferences
             }
         }
 
-        public QlipPreferencesWindow(ConfigHelper cnfg)
+        public QlipPreferencesWindow()
         {
-            config = cnfg;
-            SaveCount = config.config.save_count.ToString();
-            double pto = config.config.paste_timeout;
-            PasteTimeout = pto > 0 ? pto.ToString() : ConfigHelper.defaultPasteTimeout.ToString();
+            SaveCount = Qlip.Properties.Settings.Default.SaveCount.ToString();
+            double pto = Qlip.Properties.Settings.Default.PasteTimeout;
+            PasteTimeout = pto > 0 ? pto.ToString() : DEFAULT_PASTE_TIMEOUT.ToString();
             AutoPaste = pto > 0;
-            ResetOnPaste = config.config.reset_on_paste;
-            ResetOnCancel = config.config.reset_on_cancel;
-            MovePastedToFront = config.config.move_pasted_to_front;
+            ResetOnPaste = Qlip.Properties.Settings.Default.ResetOnPaste;
+            ResetOnCancel = Qlip.Properties.Settings.Default.ResetOnCancel;
+            MovePastedToFront = Qlip.Properties.Settings.Default.MovePastedToFront;
             FieldsAreValid = _saveCountValid = _pasteTimeoutValid = true;
 
             DataContext = this;
@@ -147,14 +151,29 @@ namespace QlipPreferences
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            config.Save();
+            if (Qlip.Properties.Settings.Default.SaveCount != _saveCount)
+                Qlip.Properties.Settings.Default.SaveCount = _saveCount;
+
+            if (Qlip.Properties.Settings.Default.ResetOnPaste != _resetOnPaste)
+                Qlip.Properties.Settings.Default.ResetOnPaste = _resetOnPaste;
+
+            if (Qlip.Properties.Settings.Default.ResetOnCancel != _resetOnCancel)
+                Qlip.Properties.Settings.Default.ResetOnCancel = _resetOnCancel;
+
+            if (Qlip.Properties.Settings.Default.PasteTimeout != _pasteTimeout)
+                Qlip.Properties.Settings.Default.PasteTimeout = _pasteTimeout;
+
+            if (Qlip.Properties.Settings.Default.MovePastedToFront != _movePastedToFront)
+                Qlip.Properties.Settings.Default.MovePastedToFront = _movePastedToFront;
+
+            Qlip.Properties.Settings.Default.Save();
             this.Close();
         }
 
         private void RestoreDefaultsButton_Click(object sender, RoutedEventArgs e)
         {
-            config.SetDefaults();
-            config.Save();
+            Qlip.Properties.Settings.Default.Reset();
+            Qlip.Properties.Settings.Default.Save();
             this.Close();
         }
 

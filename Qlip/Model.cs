@@ -8,22 +8,32 @@ namespace Qlip
     {
         private List<string> clipboardHistory;
         private int current = 0;
-        private ConfigHelper config;
 
-        public bool ResetOnPaste() { return config.config.reset_on_paste; }
-        public bool ResetOnCancel() { return config.config.reset_on_cancel; }
+        public bool ResetOnPaste() { return Properties.Settings.Default.ResetOnPaste; }
+        public bool ResetOnCancel() { return Properties.Settings.Default.ResetOnCancel; }
         public int PasteTimeoutMS()
         {
-            return (int)System.Math.Floor(config.config.paste_timeout * 1000);
+            return (int)Math.Floor(Properties.Settings.Default.PasteTimeout * 1000);
         }
-        public bool MovePastedToFront() { return config.config.move_pasted_to_front; }
+        public bool MovePastedToFront() { return Properties.Settings.Default.MovePastedToFront; }
 
 
-        public Model(ConfigHelper cnfg)
+        public Model()
         {
-            config = cnfg;
-            config.QlipConfigChanged += QlipConfigChangedHandler;
-            clipboardHistory = new List<string>(config.config.save_count);
+            Properties.Settings.Default.PropertyChanged += PreferencesChanged; 
+            clipboardHistory = new List<string>(Properties.Settings.Default.SaveCount);
+        }
+
+        private void PreferencesChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals("SaveCount"))
+            {
+                int newSaveCount = Properties.Settings.Default.SaveCount;
+                if (clipboardHistory.Count > newSaveCount)
+                {
+                    TrimClipsFromEnd(clipboardHistory.Count - newSaveCount);
+                }
+            }
         }
 
         public void AddNewClip(string clip)
@@ -31,7 +41,7 @@ namespace Qlip
             if (clip.Length > 0)
             {
                 clipboardHistory.Insert(0, clip);
-                if (clipboardHistory.Count > config.config.save_count)
+                if (clipboardHistory.Count > Properties.Settings.Default.SaveCount)
                 {
                     clipboardHistory.RemoveAt(clipboardHistory.Count - 1);         
                 }
@@ -117,14 +127,6 @@ namespace Qlip
         public int GetCountForDisplay()
         {
             return clipboardHistory.Count;
-        }
-
-        public void QlipConfigChangedHandler(object sender, QlipConfigChangedArgs e)
-        {
-            if (clipboardHistory.Count > e.NewSaveCount)
-            {
-                TrimClipsFromEnd(clipboardHistory.Count - e.NewSaveCount);
-            }
         }
     }
 }

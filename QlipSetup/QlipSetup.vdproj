@@ -15,38 +15,14 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_1F87D4FB573B8FEE014F9C28A7EC1875"
-        "OwnerKey" = "8:_2B16D1B4E9947AE8880A27EAD890160B"
+        "MsmKey" = "8:_3FE0654BFCC49E0338A5490788A37CF9"
+        "OwnerKey" = "8:_FA3675EBE1BA4C79997A5B54E485CA0F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_2B16D1B4E9947AE8880A27EAD890160B"
-        "OwnerKey" = "8:_B655FDF1538143FAAA89BBF50136780B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2B16D1B4E9947AE8880A27EAD890160B"
-        "OwnerKey" = "8:_9E7594497978D861D9CF124742566D80"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9E2706A1422D3BE6A12E89E57B1E8837"
-        "OwnerKey" = "8:_B655FDF1538143FAAA89BBF50136780B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9E7594497978D861D9CF124742566D80"
-        "OwnerKey" = "8:_B655FDF1538143FAAA89BBF50136780B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B655FDF1538143FAAA89BBF50136780B"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_7812A2D99DC600B5E4D3329177635B2A"
+        "OwnerKey" = "8:_FA3675EBE1BA4C79997A5B54E485CA0F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -57,32 +33,44 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9E2706A1422D3BE6A12E89E57B1E8837"
+        "MsmKey" = "8:_FA3675EBE1BA4C79997A5B54E485CA0F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FED6398DDED394E23F260EFDDC4E5ABE"
+        "OwnerKey" = "8:_FA3675EBE1BA4C79997A5B54E485CA0F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FED6398DDED394E23F260EFDDC4E5ABE"
+        "OwnerKey" = "8:_7812A2D99DC600B5E4D3329177635B2A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B655FDF1538143FAAA89BBF50136780B"
+        "OwnerKey" = "8:_3FE0654BFCC49E0338A5490788A37CF9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9E7594497978D861D9CF124742566D80"
+        "OwnerKey" = "8:_FA3675EBE1BA4C79997A5B54E485CA0F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2B16D1B4E9947AE8880A27EAD890160B"
+        "OwnerKey" = "8:_7812A2D99DC600B5E4D3329177635B2A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1F87D4FB573B8FEE014F9C28A7EC1875"
+        "OwnerKey" = "8:_FED6398DDED394E23F260EFDDC4E5ABE"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -180,76 +168,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1F87D4FB573B8FEE014F9C28A7EC1875"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_1F87D4FB573B8FEE014F9C28A7EC1875"
-                    {
-                    "Name" = "8:Newtonsoft.Json.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Newtonsoft.Json.DLL"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4EA992B2B5D34E6E8F6EB0A5EBC4AC81"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2B16D1B4E9947AE8880A27EAD890160B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Qlip, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_2B16D1B4E9947AE8880A27EAD890160B"
-                    {
-                    "Name" = "8:Qlip.EXE"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Qlip.EXE"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_4EA992B2B5D34E6E8F6EB0A5EBC4AC81"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9E2706A1422D3BE6A12E89E57B1E8837"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3FE0654BFCC49E0338A5490788A37CF9"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:MutexManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_9E2706A1422D3BE6A12E89E57B1E8837"
+                    "_3FE0654BFCC49E0338A5490788A37CF9"
                     {
                     "Name" = "8:MutexManager.DLL"
                     "Attributes" = "3:512"
@@ -273,14 +199,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9E7594497978D861D9CF124742566D80"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7812A2D99DC600B5E4D3329177635B2A"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:QlipPreferences, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_9E7594497978D861D9CF124742566D80"
+                    "_7812A2D99DC600B5E4D3329177635B2A"
                     {
                     "Name" = "8:QlipPreferences.EXE"
                     "Attributes" = "3:512"
@@ -304,14 +230,34 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B655FDF1538143FAAA89BBF50136780B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DEFEC2C8AD574637BD50A2896B081E01"
+            {
+            "SourcePath" = "8:..\\QlipControl\\qlip.ico"
+            "TargetName" = "8:qlip.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_4EA992B2B5D34E6E8F6EB0A5EBC4AC81"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FA3675EBE1BA4C79997A5B54E485CA0F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:QlipControl, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_B655FDF1538143FAAA89BBF50136780B"
+                    "_FA3675EBE1BA4C79997A5B54E485CA0F"
                     {
                     "Name" = "8:QlipControl.exe"
                     "Attributes" = "3:512"
@@ -335,10 +281,21 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DEFEC2C8AD574637BD50A2896B081E01"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FED6398DDED394E23F260EFDDC4E5ABE"
             {
-            "SourcePath" = "8:..\\QlipControl\\qlip.ico"
-            "TargetName" = "8:qlip.ico"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Qlip, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_FED6398DDED394E23F260EFDDC4E5ABE"
+                    {
+                    "Name" = "8:Qlip.EXE"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Qlip.EXE"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4EA992B2B5D34E6E8F6EB0A5EBC4AC81"
             "Condition" = "8:"
@@ -352,7 +309,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }
@@ -412,7 +369,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Qlip"
         "ProductCode" = "8:{92F44C50-0448-4629-9878-DBD26F574C80}"
-        "PackageCode" = "8:{1F6DDB89-367A-4365-9EF6-BC628B033BB0}"
+        "PackageCode" = "8:{47EDCC84-3A62-4F36-AC4F-5DBE7DFFF8F3}"
         "UpgradeCode" = "8:{7F23815E-B52B-476E-8BE0-8108EF1F3689}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -429,7 +386,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Windows Clipboard Manager"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_B655FDF1538143FAAA89BBF50136780B"
+        "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:32512"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -532,7 +489,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5BC139CFC22F4432BEC531A24FD1E8C9"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9E09FD724F384791BA13952839F8C4D7"
             {
             "Name" = "8:Qlip"
             "Arguments" = "8:"
@@ -540,10 +497,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_B655FDF1538143FAAA89BBF50136780B"
+            "Target" = "8:_FA3675EBE1BA4C79997A5B54E485CA0F"
             "Folder" = "8:_959CD4D26F5C4652B10FBE739D182EC8"
             "WorkingFolder" = "8:_4EA992B2B5D34E6E8F6EB0A5EBC4AC81"
-            "Icon" = "8:_B655FDF1538143FAAA89BBF50136780B"
+            "Icon" = "8:_FA3675EBE1BA4C79997A5B54E485CA0F"
             "Feature" = "8:"
             }
         }

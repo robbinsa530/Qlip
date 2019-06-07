@@ -112,7 +112,7 @@ namespace Qlip
         /// <summary>
         /// Initializer
         /// </summary>
-        public MainWindow(ConfigHelper cnfg)
+        public MainWindow(Model model)
         {
             CurrentClip = "";
             CurrentLabel = "1/1";
@@ -127,7 +127,7 @@ namespace Qlip
 
             _pasting = false;
             _this = this;
-            _model = new Model(cnfg);
+            _model = model;
 
             _sponge = new SpongeWindow();
             _sponge.WndProcCalled += (s, e) => ProcessMessage(e);
@@ -179,8 +179,9 @@ namespace Qlip
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
+                MessageBox.Show("Failed to capture copied text!", "Qlip Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 if (!second)
                 {
                     HandleCopy(true);
