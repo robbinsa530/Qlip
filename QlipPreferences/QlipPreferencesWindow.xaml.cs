@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
+using System.Windows.Navigation;
 
 using Qlip;
 using System;
@@ -175,6 +177,11 @@ namespace QlipPreferences
             Qlip.Properties.Settings.Default.Reset();
             Qlip.Properties.Settings.Default.Save();
             this.Close();
+        }
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
 
         /// <summary>

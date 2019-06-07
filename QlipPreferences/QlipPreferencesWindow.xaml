@@ -69,7 +69,20 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Help/About">
-
+                <TextBlock Foreground="White" TextWrapping="Wrap" Margin="10">
+                    Qlip is a simple but effective clipboard manager for Windows. It saves the contents of your 
+                    clipboard as it changes and gives you quick access to a history of your clips in the order that they 
+                    appeared on your clipboard.<LineBreak/><LineBreak/>
+                    Activate the Qlip History Viewer by pressing CTRL+SHIFT+V from anywhere on your system, and navigate
+                    to your desired clip with V, TAB, or your arrow keys. Paste by lifting all keys or pressing ENTER.
+                    <LineBreak/><LineBreak/>
+                    A detailed description of Qlip and its features can be found at the 
+                    <Hyperlink NavigateUri="https://github.com/robbinsa530/Qlip" RequestNavigate="Hyperlink_RequestNavigate">
+                        Qlip Homepage
+                    </Hyperlink>
+                    .<LineBreak/><LineBreak/>
+                    Thank you for using Qlip!
+                </TextBlock>
             </TabItem>
         </TabControl>
     </Grid>

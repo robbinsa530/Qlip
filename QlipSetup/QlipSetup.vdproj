@@ -52,12 +52,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3FE0654BFCC49E0338A5490788A37CF9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_FA3675EBE1BA4C79997A5B54E485CA0F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -71,6 +65,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_FED6398DDED394E23F260EFDDC4E5ABE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3FE0654BFCC49E0338A5490788A37CF9"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -369,7 +369,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Qlip"
         "ProductCode" = "8:{92F44C50-0448-4629-9878-DBD26F574C80}"
-        "PackageCode" = "8:{47EDCC84-3A62-4F36-AC4F-5DBE7DFFF8F3}"
+        "PackageCode" = "8:{63D8C72E-4FF4-4BCA-957B-97B68AF7FBF0}"
         "UpgradeCode" = "8:{7F23815E-B52B-476E-8BE0-8108EF1F3689}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -386,7 +386,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:Windows Clipboard Manager"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_FA3675EBE1BA4C79997A5B54E485CA0F"
         "ARPIconIndex" = "3:32512"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
