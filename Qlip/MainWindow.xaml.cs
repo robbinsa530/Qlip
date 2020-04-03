@@ -363,10 +363,10 @@ namespace Qlip
             }
         }
 
-        ~MainWindow()
-        {
-            Dispose();
-        }
+        //~MainWindow()
+        //{
+        //    Dispose();
+        //}
 
         public void Dispose()
         {
