@@ -14,7 +14,7 @@ namespace Qlip
         public SpongeWindow()
         {
             CreateHandle(new CreateParams());
-            codes = new int[] { KeyCodes.WM_HOTKEY_MSG_ID, KeyCodes.WM_DRAWCLIPBOARD, KeyCodes.WM_CHANGECBCHAIN };
+            codes = new int[] { KeyCodes.WM_HOTKEY_MSG_ID, KeyCodes.WM_CLIPBOARDUPDATE };
         }
 
         protected override void WndProc(ref Message m)

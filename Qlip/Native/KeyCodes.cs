@@ -9,8 +9,7 @@
         public const int NO_REPEAT = 0x4000;
 
         public const int WM_HOTKEY_MSG_ID = 0x0312;
-        public const int WM_DRAWCLIPBOARD = 0x308;
-        public const int WM_CHANGECBCHAIN = 0x030D;
+        public const int WM_CLIPBOARDUPDATE = 0x031D;
 
         public const int V = 0x56;
     }

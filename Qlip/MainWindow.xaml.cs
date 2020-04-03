@@ -56,11 +56,6 @@ namespace Qlip
         private bool _exited = false;
 
         /// <summary>
-        /// Used for capturing system clip events
-        /// </summary>
-        private IntPtr _nextClipboardViewer;
-
-        /// <summary>
         /// Timer used for auto pasting when no action for some time
         /// </summary>
         private Timer _timer;
@@ -131,6 +126,8 @@ namespace Qlip
 
             _sponge = new SpongeWindow();
             _sponge.WndProcCalled += (s, e) => ProcessMessage(e);
+
+            HandleCopy(); // Grab existing clip if one exists
         }
 
         /// <summary>
@@ -148,15 +145,8 @@ namespace Qlip
                         if (!_pasting) { HandlePaste(); }
                     }
                     break;
-                case KeyCodes.WM_DRAWCLIPBOARD:
+                case KeyCodes.WM_CLIPBOARDUPDATE:
                     if (!_pasting) { HandleCopy(); }
-                    ClipboardListener.SendMessage(_nextClipboardViewer, message.Msg, message.WParam, message.LParam);
-                    break;
-                case KeyCodes.WM_CHANGECBCHAIN:
-                    if (message.WParam == _nextClipboardViewer)
-                        _nextClipboardViewer = message.LParam;
-                    else
-                        ClipboardListener.SendMessage(_nextClipboardViewer, message.Msg, message.WParam, message.LParam);
                     break;
             }
         }
@@ -206,6 +196,7 @@ namespace Qlip
             }
             else
             {
+                _this.ResetTimer();
                 _this._model.Next();
                 _this.CurrentClip = _this._model.GetCurrentClip();
                 _this.CurrentLabel = _this._model.GetCurrentForDisplay() + "/" + _this._model.GetCountForDisplay();
@@ -224,7 +215,11 @@ namespace Qlip
                                         _sponge.Handle);
             _pasteListenerId = _hotKeyListenerPaste.getId();
 
-            _nextClipboardViewer = ClipboardListener.SetClipboardViewer(_sponge.Handle);
+            bool success = ClipboardListener.AddClipboardFormatListener(_sponge.Handle);
+            if (!success)
+            {
+                MessageBox.Show("Error adding clipboard format listener!", "Qlip Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             RegisterPaste();
             this.Hide();
@@ -361,7 +356,11 @@ namespace Qlip
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             _hotKeyListenerPaste.Unregiser();
-            ClipboardListener.ChangeClipboardChain(_sponge.Handle, _nextClipboardViewer);
+            bool success = ClipboardListener.RemoveClipboardFormatListener(_sponge.Handle);
+            if (!success)
+            {
+                MessageBox.Show("Error removing clipboard format listener!", "Qlip Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         ~MainWindow()
@@ -372,7 +371,11 @@ namespace Qlip
         public void Dispose()
         {
             _hotKeyListenerPaste.Unregiser();
-            ClipboardListener.ChangeClipboardChain(_sponge.Handle, _nextClipboardViewer);
+            bool success = ClipboardListener.RemoveClipboardFormatListener(_sponge.Handle);
+            if (!success)
+            {
+                MessageBox.Show("Error removing clipboard format listener!", "Qlip Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         /// <summary>
