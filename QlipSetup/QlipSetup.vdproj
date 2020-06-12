@@ -58,7 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3FE0654BFCC49E0338A5490788A37CF9"
+        "OwnerKey" = "8:_7812A2D99DC600B5E4D3329177635B2A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7812A2D99DC600B5E4D3329177635B2A"
+        "OwnerKey" = "8:_3FE0654BFCC49E0338A5490788A37CF9"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -175,6 +175,11 @@
             "AssemblyAsmDisplayName" = "8:MutexManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_3FE0654BFCC49E0338A5490788A37CF9"
+                    {
+                    "Name" = "8:MutexManager.DLL"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MutexManager.DLL"
             "TargetName" = "8:"
@@ -201,6 +206,11 @@
             "AssemblyAsmDisplayName" = "8:QlipPreferences, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_7812A2D99DC600B5E4D3329177635B2A"
+                    {
+                    "Name" = "8:QlipPreferences.EXE"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:QlipPreferences.EXE"
             "TargetName" = "8:"
@@ -278,6 +288,11 @@
             "AssemblyAsmDisplayName" = "8:Qlip, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_FED6398DDED394E23F260EFDDC4E5ABE"
+                    {
+                    "Name" = "8:Qlip.EXE"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Qlip.EXE"
             "TargetName" = "8:"
@@ -353,15 +368,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Qlip"
-        "ProductCode" = "8:{DD6D83E1-3EBB-4D6F-96E9-671281695867}"
-        "PackageCode" = "8:{68C16129-8625-44F7-BBED-3257BE4B61C4}"
+        "ProductCode" = "8:{986A79CA-EBC9-44E3-954C-D0567A1991C8}"
+        "PackageCode" = "8:{9D6CCB04-5D40-4750-B75C-FF835337A9FB}"
         "UpgradeCode" = "8:{7F23815E-B52B-476E-8BE0-8108EF1F3689}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:FALSE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.1.0"
+        "ProductVersion" = "8:1.1.1"
         "Manufacturer" = "8:Qlip"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

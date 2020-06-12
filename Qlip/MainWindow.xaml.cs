@@ -156,25 +156,46 @@ namespace Qlip
         /// </summary>
         private static void HandleCopy(bool second=false)
         {
+            string errCheckPt = "0";
+            string clipContents = null;
             try
             {
+                errCheckPt = "1";
                 if (Clipboard.ContainsText())
                 {
+                    errCheckPt = "2";
                     string cur = _this._model.GetMostRecentClip();
-                    string clipContents = Clipboard.GetText(TextDataFormat.UnicodeText);
-                    if (!cur.Equals(clipContents))
+                    errCheckPt = "3";
+                    clipContents = Clipboard.GetText(TextDataFormat.UnicodeText);
+                    errCheckPt = "4";
+                    if (clipContents != null && !cur.Equals(clipContents))
                     {
-                        _this._model.AddNewClip(Clipboard.GetText(TextDataFormat.UnicodeText));
+                        errCheckPt = "5";
+                        _this._model.AddNewClip(clipContents);
+                        errCheckPt = "6";
                         _this._model.Reset();
+                        errCheckPt = "7";
                     }
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Failed to capture copied text!", "Qlip Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Check to see if it got into qlip. If so, no problem
+                string newCur = _this._model.GetMostRecentClip();
+                if (clipContents != null && clipContents.Equals(newCur))
+                {
+                    return;
+                }
+
+
                 if (!second)
                 {
                     HandleCopy(true);
+                }
+                else
+                {
+                    string msg = "Failed to capture copied text. ERRCODE=" + errCheckPt + "." + (second ? "1" : "2");
+                    MessageBox.Show("Failed to capture copied text.", "Qlip Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
