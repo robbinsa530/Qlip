@@ -195,7 +195,7 @@ namespace Qlip
                 else
                 {
                     string msg = "Failed to capture copied text. ERRCODE=" + errCheckPt + "." + (second ? "1" : "2");
-                    MessageBox.Show("Failed to capture copied text.", "Qlip Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(msg, "Qlip Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
